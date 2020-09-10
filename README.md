@@ -4,7 +4,7 @@ Interactive `cd` command to make changing directories more intuitive.
 
 ## Install
 
-clone repo locally, edit variables in `main.sh` to point to the correct files 
+Clone repo locally and edit the variables in `main.sh` to reflect where you're keeping the Python script.
 
 ## Use 
 

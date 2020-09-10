@@ -1,5 +1,7 @@
-# This is a test
+# Author: Shaun Jorstad
+# Forked by: Brendan Ortmann
 
+# Load modules
 from blessed import Terminal
 import os
 import subprocess
@@ -8,6 +10,10 @@ import configparser
 term = Terminal()
 
 currentPath = os.getcwd()
+
+# Place result.txt in the same directory as the Python script
+# Script gets the exit directory from this file
+# TODO: remove file after get?
 shellScriptPath = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), "result.txt")
 
@@ -27,7 +33,6 @@ config = {
 }
 
 # clears the terminal
-
 
 def run():
     print(term.home() + term.clear())
@@ -58,6 +63,9 @@ def run():
                         tmpPath = tmpPath[:-1]
                     elif key.code == KEY_TAB and len(tmpPath) > 0 and autoComplete is not None:
                         print(term.home() + term.clear() + "os cd called")
+                        
+                        # This pylint error is caused by the fact that autoComplete is initialized as an unsubscriptable object
+                        # TODO: initialize autoComplete as an empty list (?) instead
                         if autoComplete[1] == "directory":
                             os.chdir(os.path.join(
                                 currentPath, autoComplete[0]))
